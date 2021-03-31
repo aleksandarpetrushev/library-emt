@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, String> {
+public interface BookRepository extends JpaRepository<Book, Long> {
 
     @EntityGraph(type = EntityGraph.EntityGraphType.FETCH,
                    attributePaths = {"author"})
@@ -25,4 +25,6 @@ public interface BookRepository extends JpaRepository<Book, String> {
     Optional<Book> findByName(String name);
 
     Optional<Book> findById(Long id);
+
+    void deleteByName(String name);
 }
