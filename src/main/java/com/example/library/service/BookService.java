@@ -26,4 +26,6 @@ public interface BookService {
     Optional<Book> save(BookDto bookDto);
 
     Optional<Book> edit(Long id, BookDto bookDto);
+
+    Optional<Book> markAsTaken(Long id);
 }

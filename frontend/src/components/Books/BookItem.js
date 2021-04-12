@@ -18,6 +18,10 @@ const BookItem = (props) => {
           to={`/books/${props.book.id}/edit`}>
           Edit
         </Link>
+        <Link className={"btn btn-success ml-2"}
+          onClick={() => props.markAsTaken(props.book.id)}>
+          Mark As Taken
+        </Link>
       </td>
     </tr>
   )

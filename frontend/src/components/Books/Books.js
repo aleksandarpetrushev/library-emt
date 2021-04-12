@@ -67,7 +67,7 @@ class Books extends React.Component {
       return index >= offset && index < nextPageOffset;
     }).map(book => {
       return (
-        <BookItem key={book.id} book={book} onDelete={this.props.onDelete} onEdit={this.props.onEdit} />
+        <BookItem key={book.id} book={book} onDelete={this.props.onDelete} onEdit={this.props.onEdit} markAsTaken={this.props.markAsTaken} />
       );
     })
   }

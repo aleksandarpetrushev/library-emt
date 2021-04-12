@@ -53,4 +53,11 @@ public class BookRestController {
             return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();
     }
+
+    @PatchMapping("/{id}/take")
+    public ResponseEntity<Book> markAsTaken(@PathVariable Long id) {
+        return this.bookService.markAsTaken(id)
+                .map(book -> ResponseEntity.ok().body(book))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
 }

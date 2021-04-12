@@ -19,7 +19,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @EntityGraph(type = EntityGraph.EntityGraphType.LOAD,
             attributePaths = {"author"})
-    @Query("select b from Book b")
+    @Query("select b from Book b order by b.id DESC")
     List<Book> loadAll();
 
     Optional<Book> findByName(String name);

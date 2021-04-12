@@ -1,12 +1,13 @@
 import './App.css';
 import React, { Component } from "react";
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from '../Header/Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import apiService from '../../repository/apiService';
 import Books from '../Books/Books'
 import AddBook from '../Books/AddBook'
 import EditBook from '../Books/EditBook';
+import Categories from '../Categories/Categories'
 
 class App extends Component {
 
@@ -27,7 +28,8 @@ class App extends Component {
           <div className="container">
             <Route path={"/books/add"} exact render={() => <AddBook authors={this.state.authors} onAddBook={this.addBook} />} />
             <Route path={"/books/:id/edit"} exact render={() => <EditBook book={this.state.selectedBook} authors={this.state.authors} onEditBook={this.editBook} />} />
-            <Route path={"/books"} exact render={() => <Books books={this.state.books} onDelete={this.deleteBook} onEdit={this.getBook} />} />
+            <Route path={"/books"} exact render={() => <Books books={this.state.books} onDelete={this.deleteBook} onEdit={this.getBook} markAsTaken={this.markAsTaken} />} />
+            <Route path={"/categories"} exact render={() => <Categories />} />
             <Route path={"/"} exact render={() => <Books books={this.state.books} onDelete={this.deleteBook} onEdit={this.getBook} />} />
           </div>
         </main>
@@ -86,6 +88,12 @@ class App extends Component {
       .then(() => {
         this.loadBooks();
       })
+  }
+
+  markAsTaken = (id) => {
+    apiService.markAsTaken(id).then(() => {
+      this.loadBooks();
+    })
   }
 
 }

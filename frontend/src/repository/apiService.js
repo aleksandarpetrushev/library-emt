@@ -33,6 +33,10 @@ const apiService = {
       "availableCopies": availableCopies,
       "author": author
     });
+  },
+
+  markAsTaken: (id) => {
+    return axios.patch(`/books/${id}/take`);
   }
 }
 
